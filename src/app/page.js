@@ -10,7 +10,7 @@ import Unlock from "@/components/pages/Landingpage/Unlock";
 import { client } from '@/sanity/lib/client';
 import { landingPageQuery } from '@/sanity/lib/queries';
 import Loader from "@/components/ui/Loader";
-
+// saddsa
 export default function Home() {
   const [landingPageData, setLandingPageData] = useState(null);
   const [loading, setLoading] = useState(true);
