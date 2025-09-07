@@ -117,20 +117,24 @@ const Modernity = ({ data }) => {
     return (
         <div ref={containerRef} className='sm:mt-20 mt-5 min-h-screen relative max-w-[1920px] mx-auto px-4 md:px-10'>
             <div className='leading-none gap-0'>
-                <TextAnimation
-                    className='font-ppvalvestencil font-[400] text-[40px] sm:text-[70px] md:text-[100px] text-[#ccc0b2] leading-tight'
-                    stagger={0.06}
-                    y={80}
-                    duration={1.2}
-                    ease="power2.out"
-                    triggerPosition="top 70%"
-                    triggerActions="play none none none"
-                    blurEffect={true}
-                    delay={0.2}
-                >
-                    {data?.sectionTitle1 || 'Nylige'}
-                </TextAnimation>
-                <TextAnimation
+                {data?.sectionTitle1 && (
+                    <TextAnimation
+                        className="font-ppvalvestencil font-[400] text-[40px] sm:text-[70px] md:text-[100px] text-[#ccc0b2] leading-tight"
+                        stagger={0.06}
+                        y={80}
+                        duration={1.2}
+                        ease="power2.out"
+                        triggerPosition="top 70%"
+                        triggerActions="play none none none"
+                        blurEffect={true}
+                        delay={0.2}
+                    >
+                        {data.sectionTitle1}
+                    </TextAnimation>
+                )}
+
+                {data?.sectionTitle2 && (
+                    <TextAnimation
                     className='font-ppvalvestencil font-[400] -mt-[0.5rem] sm:-mt-[2rem] text-[40px] sm:text-[70px] md:text-[100px] text-[#ccc0b2] leading-tight'
                     stagger={0.06}
                     y={80}
@@ -143,6 +147,7 @@ const Modernity = ({ data }) => {
                 >
                     {data?.sectionTitle2 || 'Prosjekter'}
                 </TextAnimation>
+                )}
             </div>
 
             {/* Three Column Layout */}
@@ -150,6 +155,7 @@ const Modernity = ({ data }) => {
                 {/* Column 1: A Landmark + Property Image + Iconic */}
                 <div className='flex flex-col gap-y-8'>
                     {/* Portfolio intro */}
+                    {data?.introText && (
                     <div>
                         <TextAnimation
                             className='font-pp-neue font-[500] text-[22px] text-black leading-tight'
@@ -162,9 +168,10 @@ const Modernity = ({ data }) => {
                             blurEffect={true}
                             delay={0.2}
                         >
-                            {data?.introText || 'Nylige prosjekter med etter-bilde, nøkkelpunkter og lenke til detaljside.'}
+                                {data.introText}
                         </TextAnimation>
                     </div>
+                    )}
                     <div className='relative sm:hidden block'>
                         <div className='flex justify-end items-end'>
                             <Image src="/assets/1880-door.png" alt="1880" width={1080} height={1080} className='w-[200px]' />
@@ -235,7 +242,7 @@ const Modernity = ({ data }) => {
                     </div>
 
                     {/* Second Featured Project */}
-                    {data?.featuredProjects?.[1] ? (
+                    {data?.featuredProjects?.[1] && (
                         <div className='space-y-4 sm:mt-20 mt-10 cursor-pointer '>
                             <div ref={neighbourhoodImageRef} className='w-full h-[400px] sm:h-[700px] overflow-hidden '>
                                 <img
@@ -257,28 +264,6 @@ const Modernity = ({ data }) => {
                                         Se prosjekt
                                     </button>
                                 </Link>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className='space-y-4 sm:mt-20 mt-10 cursor-pointer '>
-                            <div ref={neighbourhoodImageRef} className='w-full h-[400px] sm:h-[700px] overflow-hidden '>
-                                <img
-                                    ref={neighbourhoodImgRef}
-                                    src="/assets/carousel-img-2.jpg"
-                                    alt="Aerial View"
-                                    className='w-full h-full object-cover will-change-transform'
-                                    style={{ transform: 'translate3d(0,0,0)' }}
-                                />
-                            </div>
-
-                            {/* Project Label and Learn More */}
-                            <div className='flex items-center justify-between'>
-                                <span className='font-pp-neue text-[18px] sm:text-[21px] font-medium text-black'>
-                                    Grünerløkka 12
-                                </span>
-                                <button className='bg-[#ccc0b2] text-black px-10 py-2 rounded-full font-pp-neue text-[18px] font-medium hover:bg-[#b8ab9a] transition-colors'>
-                                    Se prosjekt
-                                </button>
                             </div>
                         </div>
                     )}

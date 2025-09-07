@@ -97,113 +97,117 @@ const RegisterYourInterest = ({ data }) => {
 
     return (
         <div ref={containerRef} className='mt-20 mb-5 border-t w-full border-[#d3d3d3] pt-20 max-w-[1920px] mx-auto px-4 md:px-10'>
-            
+
             {/* Process Section */}
             <div className='mb-20'>
                 <div className='leading-none text-center gap-0 mb-12'>
-                    <TextAnimation
-                        className='font-ppvalvestencil font-[400] text-[26px] sm:text-[53px] text-[#aea293] leading-tight'
-                        stagger={0.06}
-                        y={80}
-                        duration={1.2}
-                        ease="power2.out"
-                        triggerPosition="top 70%"
-                        triggerActions="play none none none"
-                        blurEffect={true}
-                        delay={0.2}
-                    >
-                        {data?.processTitle || 'Slik jobber jeg'}
-                    </TextAnimation>
+                    {data?.processTitle && (
+                        <TextAnimation
+                            className='font-ppvalvestencil font-[400] text-[26px] sm:text-[53px] text-[#aea293] leading-tight'
+                            stagger={0.06}
+                            y={80}
+                            duration={1.2}
+                            ease="power2.out"
+                            triggerPosition="top 70%"
+                            triggerActions="play none none none"
+                            blurEffect={true}
+                            delay={0.2}
+                        >
+                            {data.processTitle}
+                        </TextAnimation>
+                    )}
                 </div>
-                
+
                 {/* Process Steps */}
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-                    {(data?.processSteps || [
-                        { step: 'Behov & mål' },
-                        { step: 'Plan & tilbud' },
-                        { step: 'Utførelse & oppfølging' },
-                        { step: 'Leveranse med FDV/samsvar' }
-                    ]).map((processStep, index) => (
-                        <div key={index} className='text-center'>
-                            <div className='w-12 h-12 bg-[#ccc0b2] rounded-full flex items-center justify-center mx-auto mb-4'>
-                                <span className='font-pp-neue font-bold text-black'>{index + 1}</span>
+                {data?.processSteps?.length > 0 && (
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+                        {data.processSteps.map((processStep, index) => (
+                            <div key={index} className='text-center'>
+                                <div className='w-12 h-12 bg-[#ccc0b2] rounded-full flex items-center justify-center mx-auto mb-4'>
+                                    <span className='font-pp-neue font-bold text-black'>{index + 1}</span>
+                                </div>
+                                <TextAnimation
+                                    className='font-pp-neue font-[500] text-[18px] text-black'
+                                    stagger={0.06}
+                                    y={30}
+                                    duration={0.8}
+                                    ease="power2.out"
+                                    triggerPosition="top 80%"
+                                    triggerActions="play none none none"
+                                    blurEffect={true}
+                                    delay={0.1 + index * 0.1}
+                                >
+                                    {processStep.step}
+                                </TextAnimation>
+                                {processStep.description && (
+                                    <p className='font-pp-neue text-[14px] text-[#aea293] mt-2'>
+                                        {processStep.description}
+                                    </p>
+                                )}
                             </div>
-                            <TextAnimation
-                                className='font-pp-neue font-[500] text-[18px] text-black'
-                                stagger={0.06}
-                                y={30}
-                                duration={0.8}
-                                ease="power2.out"
-                                triggerPosition="top 80%"
-                                triggerActions="play none none none"
-                                blurEffect={true}
-                                delay={0.1 + index * 0.1}
-                            >
-                                {processStep.step}
-                            </TextAnimation>
-                            {processStep.description && (
-                                <p className='font-pp-neue text-[14px] text-[#aea293] mt-2'>
-                                    {processStep.description}
-                                </p>
-                            )}
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Testimonials Section */}
             <div className='mb-20'>
                 <div className='leading-none text-center gap-0 mb-12'>
-                    <TextAnimation
-                        className='font-ppvalvestencil font-[400] text-[26px] sm:text-[53px] text-[#aea293] leading-tight'
-                        stagger={0.06}
-                        y={80}
-                        duration={1.2}
-                        ease="power2.out"
-                        triggerPosition="top 70%"
-                        triggerActions="play none none none"
-                        blurEffect={true}
-                        delay={0.2}
-                    >
-                        {data?.testimonialsTitle || 'Tilbakemeldinger'}
-                    </TextAnimation>
+                    {data?.testimonialsTitle && (
+                        <TextAnimation
+                            className='font-ppvalvestencil font-[400] text-[26px] sm:text-[53px] text-[#aea293] leading-tight'
+                            stagger={0.06}
+                            y={80}
+                            duration={1.2}
+                            ease="power2.out"
+                            triggerPosition="top 70%"
+                            triggerActions="play none none none"
+                            blurEffect={true}
+                            delay={0.2}
+                        >
+                            {data.testimonialsTitle}
+                        </TextAnimation>
+                    )}
                 </div>
-                
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
-                    {(data?.testimonials || [
-                        { quote: 'Profesjonell og ryddig. Leverte på tid.', author: '[Navn]' },
-                        { quote: 'Planløsningen ga tydelig verdiøkning.', author: '[Navn]' }
-                    ]).map((testimonial, index) => (
-                        <div key={index} className='text-center p-6'>
-                            <TextAnimation
-                                className='font-pp-neue text-[18px] text-[#aea293] italic mb-4'
-                                stagger={0.06}
-                                y={30}
-                                duration={0.8}
-                                ease="power2.out"
-                                triggerPosition="top 80%"
-                                triggerActions="play none none none"
-                                blurEffect={true}
-                                delay={0.1 + index * 0.2}
-                            >
-                                «{testimonial.quote}»
-                            </TextAnimation>
-                            <TextAnimation
-                                className='font-pp-neue font-[500] text-[16px] text-black'
-                                stagger={0.06}
-                                y={30}
-                                duration={0.8}
-                                ease="power2.out"
-                                triggerPosition="top 80%"
-                                triggerActions="play none none none"
-                                blurEffect={true}
-                                delay={0.2 + index * 0.2}
-                            >
-                                – {testimonial.author}
-                            </TextAnimation>
-                        </div>
-                    ))}
-                </div>
+
+                {data?.testimonials?.length > 0 && (
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
+                        {data.testimonials.map((testimonial, index) => (
+                            <div key={index} className='text-center p-6'>
+                                {testimonial.quote && (
+                                    <TextAnimation
+                                        className='font-pp-neue text-[18px] text-[#aea293] italic mb-4'
+                                        stagger={0.06}
+                                        y={30}
+                                        duration={0.8}
+                                        ease="power2.out"
+                                        triggerPosition="top 80%"
+                                        triggerActions="play none none none"
+                                        blurEffect={true}
+                                        delay={0.1 + index * 0.2}
+                                    >
+                                        «{testimonial.quote}»
+                                    </TextAnimation>
+                                )}
+                                {testimonial.author && (
+                                    <TextAnimation
+                                        className='font-pp-neue font-[500] text-[16px] text-black'
+                                        stagger={0.06}
+                                        y={30}
+                                        duration={0.8}
+                                        ease="power2.out"
+                                        triggerPosition="top 80%"
+                                        triggerActions="play none none none"
+                                        blurEffect={true}
+                                        delay={0.2 + index * 0.2}
+                                    >
+                                        – {testimonial.author}
+                                    </TextAnimation>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className='border-t w-full border-[#d3d3d3]' />
